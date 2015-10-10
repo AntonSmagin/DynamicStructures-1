@@ -3,6 +3,7 @@
 #include <iostream>
 #include <clocale>
 #include <ctype.h>
+#include <cstring>
 
 
 using namespace std;
@@ -73,7 +74,9 @@ void menu()
 			isdigit(t);
 			int c;
 			c = t - '0';
+			//double atof(const char *t);
 			if (c >=0 && c < 5)
+			//if (t >= 0 && t < 5)
 			{
 				
 				switch (c)
@@ -96,9 +99,15 @@ void menu()
 					break;
 
 				case 2:
-					cout << "Напишите новый элемент\n\n";
-					cin >> el;
-					add(&pend, el);
+					if (pbeg != NULL){
+						cout << "Напишите новый элемент\n\n";
+						cin >> el;
+						add(&pend, el);
+					}
+					else { 
+						cout << "Ошибка! Нужно добавить первый элемент!\n\n"; 
+						system("pause");
+					}
 					system("CLS");
 					break;
 				case 3:
@@ -117,6 +126,7 @@ void menu()
 				case 4:
 					cout << "Распечатаная очередь\n\n";
 					print(&pbeg);
+					cout << endl;
 					system("pause");
 					cout << endl;
 					system("cls");
