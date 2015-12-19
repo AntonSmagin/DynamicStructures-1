@@ -1,13 +1,12 @@
 struct Node
 {
-	int val;
-	Node *p;
+	int value; //информационное поле
+	Node *prev; //указатель на предыдущий элемент
 };
 
 
-Node *First(int val);
-
-void add(Node **pend, int val);
-int del(Node **pbeg);
-void print(Node **pbeg);
-void menu();
+Node *First(int value); // создание первого элемента в очереди
+void add(Node **pend, int value); // добавление элемента в очередь
+int del(Node **pbeg); // удаление элемента из очереди
+void print(Node **pbeg); // печать элементов очереди
+void menu(); // интерфейс очереди
