@@ -1,56 +1,45 @@
-#include "stdafx.h"
 #include "queue.h"
 #include <iostream>
 #include <clocale>
 #include <ctype.h>
 #include <cstring>
 
-
 using namespace std;
-
-Node *First(int val)
+Node *First(int value)
 {
-	Node *pv = new Node;
-	pv->val = val; //(*pv).val
-	pv->p = NULL;
-	return pv;
+	Node *pv = new Node; //выделяем место в ячейке памяти под указатель на первый элемент очереди
+	pv->value = val; // записываем значение в информационное поле
+	pv-> next = NULL; // зануляем указатель на следующий элемент
+	return pv; // возвращаем адрес первого элемента структуры
 }
 
-void add(Node **pend, int val)
+void add(Node **pend, int value)
 {
-	Node *pv = new Node;
-	pv->val = val;
-	pv->p = NULL;
-	(*pend)->p = pv;
+	Node *pv = new Node; //выделяем место в ячейке памяти под указатель на новый элемент очереди
+	pv->value = value; // записываем значение в информационное поле
+	pv-> next = NULL; 
+	(*pend)-> next = pv;
 	*pend = pv;
 }
-
-
-int del(Node **pbeg)
-{
-
-	int temp = (*pbeg)->val;
-	Node *pv = *pbeg;
-	*pbeg = (*pbeg)->p;
-	delete pv;
-	return temp;
-}
-
-
 void print(Node **pbeg)
 {
-	Node *tmp = (*pbeg)->p;
+	Node *tmp = (*pbeg)->next; //выделяем место в ячейке памяти под указатель и присваиваем ему указатель на второй элемент очереди
 
-	printf("%d ", (*pbeg)->val);
-	while (tmp != NULL)
+	printf("%d ", (*pbeg)->value);// печатаем первый элемент очереди
+	while (tmp != NULL)//пока указатель на последующий элемент не равен нулю
 	{
-		printf("%d ", tmp->val);
-		tmp = tmp->p;
+		printf("%d ", tmp->value); //печатаем значение следующий элемент
+		tmp = tmp->next; //переприсваем указатель на указатель следующего элемента
 	}
 	cout << endl;
-
 }
-
+bool isEmpty(Node *pbeg) //сходная проверка с проверкой на пустоту в стеке
+{
+	if (pbeg == NULL)
+		return false;
+	else
+		return true;
+}
 void menu()
 {
 	setlocale(LC_ALL, "Russian");
@@ -74,11 +63,9 @@ void menu()
 			isdigit(t);
 			int c;
 			c = t - '0';
-			//double atof(const char *t);
-			if (c >=0 && c < 5)
-			//if (t >= 0 && t < 5)
+			if (c >= 0 && c < 5)
 			{
-				
+
 				switch (c)
 				{
 				case 1:
@@ -90,28 +77,28 @@ void menu()
 						pbeg = First(first_el);
 						pend = pbeg;
 					}
-					else 
-					{ 
+					else
+					{
 						cout << "Ошибка! Первый элемент существует!\n\n";
-					    system("pause");
+						system("pause");
 					}
 					system("CLS");
 					break;
 
 				case 2:
-					if (pbeg != NULL){
+					if (pbeg != NULL) {
 						cout << "Напишите новый элемент\n\n";
 						cin >> el;
 						add(&pend, el);
 					}
-					else { 
-						cout << "Ошибка! Нужно добавить первый элемент!\n\n"; 
+					else {
+						cout << "Ошибка! Нужно добавить первый элемент!\n\n";
 						system("pause");
 					}
 					system("CLS");
 					break;
 				case 3:
-					if (pbeg != NULL){
+					if (pbeg != NULL) {
 						del(&pbeg);
 						cout << "Элемент был удален из очереди\n\n";
 					}
@@ -140,12 +127,26 @@ void menu()
 				system("pause");
 				cout << endl;
 				system("cls");
-				
-				
+
+
 			}
 		} while (1);
 
 
 	}
 
+}
+Функция main()  main_queue.cpp
+#include "queue.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+	menu();
+
+	system("pause");
+	return 0;
 }
