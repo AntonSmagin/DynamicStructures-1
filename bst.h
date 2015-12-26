@@ -1,23 +1,24 @@
+class tree
+{
+	
+};
 class bst :public tree
 {
-	bst *leftSubtree;
-	bst *rightSubtree;
-	int value;
+	bst *leftSubtree; //укаазатель на левое поддерево
+	bst *rightSubtree; //укаазатель на правое поддерево
+	int value; // информационное поле 
 public:
 	bst();
 	bst(int val);
 	~bst();
 
-	void addNodeWrapper(int key);
-	void addNode(bst *root, int key);
-	//bst delNode(bst *root, int key);
-	bool delNode(bst *root, int key);
-	//bst find(bst *root, int key);
-	bst* find(bst *root, int key);
-	void findWrapper(int key);
-	bst minimum(bst*root);
-	bst maximum(bst*root);
-	void delNodeWrapper(int key);
-	void inorder(bst*root);
-	bst* find1(bst *root, int key);
+	void addNodeWrapper(int key); // добавление нового элемента по ключу
+	void addNode(bst *root, int key); // добавление нового элемента 
+	bool delNode(bst *root, int key); // удаление элемента 
+	bst* find(bst *root, int key); // поиск элемента
+	void findWrapper(int key); // поиск по ключу
+	bst minimum(bst*root); // поиск минимума
+	bst maximum(bst*root); // поиск максимума
+	void delNodeWrapper(int key); // удаление элемента по ключу
+	void inorder(bst*root); // прямой обход дерева
 };
